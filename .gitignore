@@ -1,1 +1,4 @@
 .DS_Store
+
+# Custom domain is staged in CNAME.pending until DNS is pointed at GitHub.
+CNAME.pending
