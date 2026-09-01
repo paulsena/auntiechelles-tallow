@@ -10,7 +10,8 @@ Edit a file, save, and the site updates itself in about a minute.
 
 1. Go to the repository page on GitHub.
 2. Click the file you want to change (`index.html` for the home page,
-   `story.html` for the My Story page).
+   `story.html` for the My Story page, `tallow-balm.html` or
+   `dry-shampoo.html` for a product page).
 3. Click the **pencil icon** (✏️) in the top right.
 4. Make your change.
 5. Scroll to the bottom, click the green **Commit changes** button.
@@ -26,8 +27,10 @@ change, and click **Revert**. That puts everything back the way it was.
 
 | What you want to change | File | Look for |
 |---|---|---|
-| A price | `index.html` | `product-card__price` |
-| A "Buy" link | `index.html` | `square.link` |
+| A price on the home page | `index.html` | `product-card__price` |
+| A price on a product page | `tallow-balm.html`, `dry-shampoo.html` | `product-hero__price` |
+| A "Buy" link | all four pages | `square.link` |
+| An ingredient description | `tallow-balm.html`, `dry-shampoo.html` | `ingredient__name` |
 | The green bar at the very top | `index.html`, `story.html` | `class="announce"` |
 | Michelle's story text | `story.html` | `class="story-body"` |
 | The email address | both files | `michelle@auntiechellestallow.com` |
@@ -39,11 +42,22 @@ is — those are notes for humans and never show up on the website.
 
 ### Changing a price
 
-Find the line that looks like this and change `$40`:
+A price appears in more than one place, so change it in each one.
+
+On the home page, find this line and change `$40`:
 
 ```html
 <span class="product-card__price">$40</span>
 ```
+
+On the product page, find this line and change it to match:
+
+```html
+<span class="product-hero__price">$40</span>
+```
+
+The Buy button at the very bottom of the product page has the price written
+into it too — look for `Buy on Square &mdash; $40`.
 
 ### Changing text
 
@@ -83,6 +97,8 @@ touch anything else.
 |---|---|
 | `index.html` | The home page |
 | `story.html` | The My Story page |
+| `tallow-balm.html` | The Tallow Balm product page |
+| `dry-shampoo.html` | The Dry Shampoo product page |
 | `styles.css` | All the colours, fonts and spacing |
 | `site.js` | The phone menu and the photo slider. Nothing else. |
 | `images/` | Every photo on the site |
@@ -94,6 +110,31 @@ touch anything else.
 All the colours live at the top of `styles.css` in the `:root` block. Changing
 one there changes it everywhere on the site. For example, `--rosemary-700` is
 the main green used for headings and buttons.
+
+---
+
+## The two product pages
+
+`tallow-balm.html` and `dry-shampoo.html` are full pages about each product —
+photos, the ingredient list, how to use it, and a Buy button that goes to Square.
+
+**They are not linked from the home page yet.** The two thumbnails under
+"Shop Auntie Chelle's Products" on `index.html` still go straight to Square. To
+send people to the product page first, change the `href` on each thumbnail:
+
+```html
+<a class="product-card" href="https://square.link/u/1GvXjHln" ...>
+```
+
+becomes
+
+```html
+<a class="product-card" href="tallow-balm.html">
+```
+
+(and `dry-shampoo.html` for the other one). The `target="_blank"` and
+`rel="noopener"` bits can come off at the same time — those are for links that
+leave the site, and this one doesn't.
 
 ---
 

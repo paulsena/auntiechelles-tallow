@@ -881,7 +881,9 @@ html { scroll-behavior: smooth; }
   .nav-toggle[aria-expanded="true"] .nav-toggle__close { display: block; }
   .nav-toggle[aria-expanded="true"] .nav-toggle__open { display: none; }
 
-  .wordmark { justify-self: center; }
+  /* Scoped to the header on purpose: the footer wordmark is a block-level box
+     that opens a left-aligned column, and an unscoped rule centres that too. */
+  .site-header .wordmark { justify-self: center; }
 }
 
 @media (max-width: 960px) {
@@ -974,4 +976,278 @@ html { scroll-behavior: smooth; }
   .nav-toggle { width: 34px; }
   .wordmark__name { font-size: 22px; }
   .wordmark__sub { font-size: 9px; letter-spacing: 0.18em; }
+}
+
+/* ========================================================= product pages ==
+   Everything below is used only by the two product pages —
+   tallow-balm.html and dry-shampoo.html. Nothing above this line uses it,
+   so this whole block can be deleted without touching the rest of the site.
+   ========================================================================= */
+
+/* The "back to shop" link that sits above the product name. */
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-500);
+  text-decoration: none;
+}
+.crumb:hover { color: var(--rosemary-700); }
+.crumb .icon { width: 14px; height: 14px; }
+
+/* Photo on the left, name / price / buy button on the right. */
+.product-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  padding-top: 40px;
+}
+.product-hero__name {
+  font-family: var(--font-script);
+  font-size: clamp(38px, 6vw, 56px);
+  line-height: 1.05;
+  color: var(--rosemary-700);
+  margin: 14px 0 0;
+}
+.product-hero__price {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 16px;
+}
+.product-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+.buy-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--ink-500);
+}
+.buy-note .icon { width: 15px; height: 15px; color: var(--rosemary-700); }
+
+/* The little rounded ingredient tags under the description. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+.chip {
+  border: 1px solid var(--border-hairline);
+  background: var(--tallow-50);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosemary-700);
+}
+
+/* Small facts under the buy button — size, shelf life, where it ships from. */
+.spec-list {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.spec-list li {
+  display: flex;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--ink-500);
+  line-height: 1.55;
+}
+.spec-list .icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--rosemary-700);
+  margin-top: 3px;
+}
+
+/* ==== INGREDIENTS — one row per ingredient. To add or remove one, copy or
+   delete a whole <li class="ingredient"> block in the page. ==== */
+.ingredient-list {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+}
+.ingredient {
+  display: grid;
+  /* Fixed first column so "One" and "Three" line up down the page. */
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid var(--border-hairline);
+}
+.ingredient:last-child { border-bottom: 1px solid var(--border-hairline); }
+.ingredient__num {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rosemary-300);
+  padding-top: 7px;
+}
+.ingredient__name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--rosemary-700);
+}
+.ingredient p {
+  color: var(--ink-500);
+  font-size: 15px;
+  line-height: 1.62;
+  margin-top: 6px;
+  max-width: 62ch;
+}
+
+/* A soft lavender aside, for a note that isn't a selling point. */
+.note-panel {
+  background: var(--lavender-100);
+  border: 1px solid var(--lavender-300);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-top: 44px;
+}
+.note-panel .eyebrow { color: var(--lavender-700); font-size: 11px; }
+.note-panel__title {
+  font-family: var(--font-script);
+  font-size: 24px;
+  color: var(--lavender-700);
+  margin-top: 6px;
+}
+.note-panel p {
+  font-size: 15px;
+  color: var(--ink-500);
+  line-height: 1.62;
+  margin-top: 10px;
+  max-width: 82ch;
+}
+.note-panel p + p { margin-top: 12px; }
+
+/* Numbered steps inside the dark green panel. The numbers count themselves. */
+.step-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+  display: grid;
+  gap: 16px;
+}
+.step-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  counter-increment: step;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.step-list li::before {
+  content: counter(step);
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border-inverse);
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--rosemary-200);
+}
+
+/* Three photos in a row under the main product photo. */
+.photo-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.photo-row .framed img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* The card at the bottom pointing at the other product. */
+.cross {
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  align-items: center;
+  gap: 32px;
+  background: var(--tallow-50);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease;
+}
+.cross:hover { border-color: var(--rosemary-600); }
+.cross__media {
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--tallow-200);
+}
+.cross__body { padding: 28px 0; }
+.cross__name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--rosemary-700);
+  margin-top: 6px;
+}
+.cross__body p {
+  font-size: 15px;
+  color: var(--ink-500);
+  line-height: 1.62;
+  margin-top: 8px;
+  max-width: 52ch;
+}
+.cross__go {
+  padding-right: 32px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-500);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.cross__go .icon { width: 14px; height: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cross { transition: none; }
+}
+
+@media (max-width: 960px) {
+  .product-hero { grid-template-columns: 1fr; gap: 36px; padding-top: 28px; }
+  .cross { grid-template-columns: 1fr; gap: 0; }
+  .cross__media { aspect-ratio: 16 / 9; }
+  .cross__body { padding: 28px 28px 8px; }
+  .cross__go { padding: 0 28px 28px; }
+}
+
+@media (max-width: 640px) {
+  .note-panel { padding: 24px; }
+  .ingredient { grid-template-columns: 1fr; gap: 4px; }
+  .ingredient__num { padding-top: 0; }
+  .photo-row { gap: 10px; }
 }
