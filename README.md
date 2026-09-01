@@ -29,7 +29,7 @@ change, and click **Revert**. That puts everything back the way it was.
 |---|---|---|
 | A price on the home page | `index.html` | `product-card__price` |
 | A price on a product page | `tallow-balm.html`, `dry-shampoo.html` | `product-hero__price` |
-| A "Buy" link | all four pages | `square.link` |
+| A "Buy" link | `tallow-balm.html`, `dry-shampoo.html` | `square.link` |
 | An ingredient description | `tallow-balm.html`, `dry-shampoo.html` | `ingredient__name` |
 | The green bar at the very top | `index.html`, `story.html` | `class="announce"` |
 | Michelle's story text | `story.html` | `class="story-body"` |
@@ -118,23 +118,31 @@ the main green used for headings and buttons.
 `tallow-balm.html` and `dry-shampoo.html` are full pages about each product —
 photos, the ingredient list, how to use it, and a Buy button that goes to Square.
 
-**They are not linked from the home page yet.** The two thumbnails under
-"Shop Auntie Chelle's Products" on `index.html` still go straight to Square. To
-send people to the product page first, change the `href` on each thumbnail:
+The two thumbnails under "Shop Auntie Chelle's Products" on the home page open
+these pages. **The Buy buttons live on the product pages, not on the home page.**
+So a customer goes: home page → product page → Square.
 
-```html
-<a class="product-card" href="https://square.link/u/1GvXjHln" ...>
-```
-
-becomes
+If you ever want a thumbnail to skip the product page and go straight to Square
+again, change its link back:
 
 ```html
 <a class="product-card" href="tallow-balm.html">
 ```
 
-(and `dry-shampoo.html` for the other one). The `target="_blank"` and
-`rel="noopener"` bits can come off at the same time — those are for links that
-leave the site, and this one doesn't.
+becomes
+
+```html
+<a class="product-card" href="https://square.link/u/1GvXjHln" target="_blank" rel="noopener">
+```
+
+and change `Have a look` on that card back to `Buy on Square`.
+
+### Changing the Square checkout links
+
+The Square links now live in **two places on each product page** — the Buy
+button near the top, and the Buy button in the green box at the bottom. If you
+ever regenerate a checkout link in Square, search the page for `square.link` and
+change both.
 
 ---
 
