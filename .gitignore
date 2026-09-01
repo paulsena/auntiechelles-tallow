@@ -1,1 +1,6 @@
 .DS_Store
+
+# Never commit TLS private keys. GitHub Pages issues its own certificate;
+# no certificate or key from the registrar belongs in this repo.
+*.pem
+*-ssl-bundle/
