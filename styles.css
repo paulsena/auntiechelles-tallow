@@ -878,8 +878,17 @@ html { scroll-behavior: smooth; }
       rgba(18, 44, 20, 0.35) 100%
     );
   }
-  .hero__inner { padding: 48px var(--gutter); max-width: none; width: 100%; }
-  .hero__mark { width: min(300px, 72vw); }
+  /* On phones the hero is centred as a block — emblem, tagline and buttons —
+     which matches the centred hero on the story page. */
+  .hero__inner {
+    padding: 48px var(--gutter);
+    max-width: none;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .hero__mark { width: min(300px, 72vw); margin-inline: auto; }
+  .hero__text { margin-inline: auto; }
 
   .features,
   .herb-grid,
